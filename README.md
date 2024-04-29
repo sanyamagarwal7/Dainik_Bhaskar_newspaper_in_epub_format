@@ -13,3 +13,6 @@ However, having a epub format allows me to read the newspaper on Kindle, avoidin
 <li>Adding section wise crosslinking from table of contents, instead of one collated file.</li>
 <li>Creating an application that can directly send the generated file to a specified Kindle address with one tap. Presently, we need to manually send the generated epub to Kindle.
 </li>
+
+
+-- Sanyam Agarwal (29th April, 2024)
