@@ -1,5 +1,6 @@
 """For fetching news from dainik bhaskar into epub format"""
 
+
 from datetime import date
 TODAY = date.today()
 
@@ -12,22 +13,34 @@ LINKS = {"National": "https://www.bhaskar.com/rss-v1--category-1061.xml",
               "Editorial": "https://www.bhaskar.com/rss-v1--category-1944.xml"
               }
 
-def valid_date(art_date, today):
+def valid_date_inclprevday(art_date, today):
     if today.year > art_date["year"]:
         if art_date["day"] == 31:
             return True
     else:
         if today.month > art_date["month"]:
             if art_date["month"]==2:
-                if art_date["day"]>=28:
+                if art_date["day"]==29:
+                    return True
+                elif art_date["day"]==28:
                     return True
             else:
-                if art_date["day"]>=30:
+                if art_date["day"]==31:
+                    return True
+                elif art_date["day"]==30:
                     return True
         else:
-            if today.day - art_date["day"] <=1:
+            if today.day - art_date["day"] <=1:     
                 return True
     return False
+
+
+def valid_date(art_date, today):
+    if today.day == art_date["day"]:      #only current day articles
+        return True
+    return False
+
+
 
 def get_relevant_feed(URL):
     page = requests.get(URL)
